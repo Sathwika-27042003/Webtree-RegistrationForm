@@ -33,7 +33,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $stmt->bind_param("ssss", $name, $email, $phone, $address);
 
       if ($stmt->execute()) {
-        echo "Registration successful!";
+        $data = [
+          "status" => "success",
+          "message" => "Registration successful!",
+          "data" => [
+              "name" => $name ,
+              "email" => $email          ]
+      ];
+      // Convert PHP array to JSON and output it
+      echo json_encode($data['message']);
+        
+      //  echo "Registration successful!";
       } else {
         echo "Error: " . $stmt->error;
       }
