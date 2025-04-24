@@ -9,12 +9,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   // Basic validation
   if ($name && $email && $phone && $address) {
-    // Check if email or phone already exists
-   // $checkQuery = "SELECT * FROM users WHERE email=$email OR phone=$phone";
-   // $stmt = $conn->prepare($checkQuery);
-    //$stmt->bind_param("ss", $email, $phone);
-    //$stmt->execute();
-    //$result = $stmt->get_result();
     $checkQuery = "SELECT * FROM users WHERE email =? OR phone =?";
     $stmt = $conn->prepare($checkQuery);
     if ($stmt === false) {
